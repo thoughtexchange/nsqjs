@@ -64,6 +64,7 @@ dedupedRequests = (lookupdEndpoints, urlFn, callback) ->
     if err
       callback err, null
     else
+      @debug "results #{results}"
       callback null, dedupeOnHostPort results
 
 ###
@@ -86,6 +87,7 @@ lookup = (lookupdEndpoints, topic, callback) ->
     parsedUrl.query.topic = topic
     delete parsedUrl.search
     url.format(parsedUrl)
+  @debug "endpointURL #{endpointURL}"
   dedupedRequests lookupdEndpoints, endpointURL, callback
 
 module.exports = lookup
